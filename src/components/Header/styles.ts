@@ -1,12 +1,23 @@
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 import { CaretLeft } from 'phosphor-react-native';
 
-export const Container = styled.View`
+export type ButtonTypeStyleProps = {
+  showBackButton?: boolean;
+}
+
+export const Container = styled.View<ButtonTypeStyleProps>`
   width: 100%;
+
+  height: 55px;
 
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+
+  ${({ showBackButton }) => showBackButton ? css`
+    justify-content: space-between;
+  ` : css `
+    justify-content: center;
+  `};
 `;
 
 export const Logo = styled.Image`
@@ -15,7 +26,7 @@ export const Logo = styled.Image`
 `;
 
 export const BackButton = styled.TouchableOpacity`
-  flex: 1;
+  width: 46px;
 `;
 
 export const BackIcon = styled(CaretLeft).attrs(({ theme }) => ({
